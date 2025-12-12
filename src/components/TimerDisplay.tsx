@@ -32,7 +32,7 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-12 rounded-full border-8 border-slate-100 shadow-xl bg-white w-80 h-80 transition-all duration-300">
+    <div className="flex flex-col items-center justify-center p-12 rounded-full border-8 border-blue-100 shadow-xl bg-blue-50 w-80 h-80 transition-all duration-300">
       <div className={cn("text-7xl font-bold tracking-tighter tabular-nums", getModeColor())}>
         {formatTime(minutes)}:{formatTime(seconds)}
       </div>
