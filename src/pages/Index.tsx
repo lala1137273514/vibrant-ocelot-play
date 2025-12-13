@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import TimerDisplay from "@/components/TimerDisplay";
 import TimerControls from "@/components/TimerControls";
 import ModeSelector, { TimerMode } from "@/components/ModeSelector";
 import { showSuccess } from "@/utils/toast";
 import { MadeWithDyad } from "@/components/made-with-dyad";
+import { Button } from "@/components/ui/button";
+import { History } from "lucide-react";
 
 const Index = () => {
   const [mode, setMode] = useState<TimerMode>("work");
@@ -64,32 +67,41 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold tracking-tight mb-2 text-slate-900">
-          Focus Timer
-        </h1>
-        <p className="text-slate-500">
-          Stay productive and take breaks.
-        </p>
-      </div>
+      <div className="w-full max-w-xl">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h1 className="text-4xl font-bold tracking-tight mb-1 text-slate-900">
+              Focus Timer
+            </h1>
+            <p className="text-slate-500">Stay productive and take breaks.</p>
+          </div>
+          <Button variant="outline" asChild className="gap-2">
+            <Link to="/history">
+              <History className="h-4 w-4" /> 历史记录
+            </Link>
+          </Button>
+        </div>
 
-      <ModeSelector currentMode={mode} onModeChange={handleModeChange} />
+        <div className="flex flex-col items-center">
+          <ModeSelector currentMode={mode} onModeChange={handleModeChange} />
 
-      <TimerDisplay
-        minutes={minutes}
-        seconds={seconds}
-        isActive={isActive}
-        mode={mode}
-      />
+          <TimerDisplay
+            minutes={minutes}
+            seconds={seconds}
+            isActive={isActive}
+            mode={mode}
+          />
 
-      <TimerControls
-        isActive={isActive}
-        onToggle={toggleTimer}
-        onReset={resetTimer}
-      />
+          <TimerControls
+            isActive={isActive}
+            onToggle={toggleTimer}
+            onReset={resetTimer}
+          />
 
-      <div className="mt-12">
-        <MadeWithDyad />
+          <div className="mt-12">
+            <MadeWithDyad />
+          </div>
+        </div>
       </div>
     </div>
   );
